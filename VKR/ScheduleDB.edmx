@@ -1,0 +1,594 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ScheduleDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Auditorias">
+          <Key>
+            <PropertyRef Name="AuditoriaId" />
+          </Key>
+          <Property Name="AuditoriaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuditoriaName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AuditoriaBuilding" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsOnMap" Type="bit" />
+        </EntityType>
+        <EntityType Name="DaysOfWeek">
+          <Key>
+            <PropertyRef Name="DayOfWeekId" />
+          </Key>
+          <Property Name="DayOfWeekId" Type="int" Nullable="false" />
+          <Property Name="DayOfWeekName" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Disciplines">
+          <Key>
+            <PropertyRef Name="DisciplineId" />
+          </Key>
+          <Property Name="DisciplineId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisciplineName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Faculties">
+          <Key>
+            <PropertyRef Name="FacultyId" />
+          </Key>
+          <Property Name="FacultyId" Type="int" Nullable="false" />
+          <Property Name="FacultyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Group_number" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="FacultyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lecturers">
+          <Key>
+            <PropertyRef Name="LecturerId" />
+          </Key>
+          <Property Name="LecturerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LecturerName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Schedules">
+          <Key>
+            <PropertyRef Name="SсheduleId" />
+          </Key>
+          <Property Name="SсheduleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="DayOfWeekId" Type="int" />
+          <Property Name="TimeId" Type="int" />
+          <Property Name="TypeOfWeekId" Type="int" />
+          <Property Name="AuditoriaId" Type="int" />
+          <Property Name="DisciplineId" Type="int" />
+          <Property Name="LecturerId" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Times">
+          <Key>
+            <PropertyRef Name="TimeId" />
+          </Key>
+          <Property Name="TimeId" Type="int" Nullable="false" />
+          <Property Name="TimePeriod" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypesOfWeek">
+          <Key>
+            <PropertyRef Name="TypeOfWeekId" />
+          </Key>
+          <Property Name="TypeOfWeekId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_Groups_Faculties">
+          <End Role="Faculties" Type="Self.Faculties" Multiplicity="1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculties">
+              <PropertyRef Name="FacultyId" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="FacultyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedules_Times">
+          <End Role="Times" Type="Self.Times" Multiplicity="0..1" />
+          <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Times">
+              <PropertyRef Name="TimeId" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="TimeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbShedule_tbAuditorias">
+          <End Role="Auditorias" Type="Self.Auditorias" Multiplicity="0..1" />
+          <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auditorias">
+              <PropertyRef Name="AuditoriaId" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="AuditoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbShedule_tbDaysOfWeek">
+          <End Role="DaysOfWeek" Type="Self.DaysOfWeek" Multiplicity="0..1" />
+          <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DaysOfWeek">
+              <PropertyRef Name="DayOfWeekId" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="DayOfWeekId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbShedule_tbDisciplines">
+          <End Role="Disciplines" Type="Self.Disciplines" Multiplicity="0..1" />
+          <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disciplines">
+              <PropertyRef Name="DisciplineId" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="DisciplineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbShedule_tbGroups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbShedule_tbLecturers">
+          <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="0..1" />
+          <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturers">
+              <PropertyRef Name="LecturerId" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="LecturerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbShedule_tbTypeOfWeek">
+          <End Role="TypesOfWeek" Type="Self.TypesOfWeek" Multiplicity="0..1" />
+          <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypesOfWeek">
+              <PropertyRef Name="TypeOfWeekId" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="TypeOfWeekId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ScheduleDBModelContainer">
+          <EntitySet Name="Auditorias" EntityType="Self.Auditorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DaysOfWeek" EntityType="Self.DaysOfWeek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Disciplines" EntityType="Self.Disciplines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faculties" EntityType="Self.Faculties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lecturers" EntityType="Self.Lecturers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Schedules" EntityType="Self.Schedules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Times" EntityType="Self.Times" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypesOfWeek" EntityType="Self.TypesOfWeek" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Groups_Faculties" Association="Self.FK_Groups_Faculties">
+            <End Role="Faculties" EntitySet="Faculties" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedules_Times" Association="Self.FK_Schedules_Times">
+            <End Role="Times" EntitySet="Times" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbShedule_tbAuditorias" Association="Self.FK_tbShedule_tbAuditorias">
+            <End Role="Auditorias" EntitySet="Auditorias" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbShedule_tbDaysOfWeek" Association="Self.FK_tbShedule_tbDaysOfWeek">
+            <End Role="DaysOfWeek" EntitySet="DaysOfWeek" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbShedule_tbDisciplines" Association="Self.FK_tbShedule_tbDisciplines">
+            <End Role="Disciplines" EntitySet="Disciplines" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbShedule_tbGroups" Association="Self.FK_tbShedule_tbGroups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbShedule_tbLecturers" Association="Self.FK_tbShedule_tbLecturers">
+            <End Role="Lecturers" EntitySet="Lecturers" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbShedule_tbTypeOfWeek" Association="Self.FK_tbShedule_tbTypeOfWeek">
+            <End Role="TypesOfWeek" EntitySet="TypesOfWeek" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ScheduleDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Auditorias">
+          <Key>
+            <PropertyRef Name="AuditoriaId" />
+          </Key>
+          <Property Name="AuditoriaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuditoriaName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AuditoriaBuilding" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsOnMap" Type="Boolean" />
+          <NavigationProperty Name="Schedules" Relationship="Self.FK_tbShedule_tbAuditorias" FromRole="Auditorias" ToRole="Schedules" />
+        </EntityType>
+        <EntityType Name="DaysOfWeek">
+          <Key>
+            <PropertyRef Name="DayOfWeekId" />
+          </Key>
+          <Property Name="DayOfWeekId" Type="Int32" Nullable="false" />
+          <Property Name="DayOfWeekName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Schedules" Relationship="Self.FK_tbShedule_tbDaysOfWeek" FromRole="DaysOfWeek" ToRole="Schedules" />
+        </EntityType>
+        <EntityType Name="Disciplines">
+          <Key>
+            <PropertyRef Name="DisciplineId" />
+          </Key>
+          <Property Name="DisciplineId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisciplineName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Schedules" Relationship="Self.FK_tbShedule_tbDisciplines" FromRole="Disciplines" ToRole="Schedules" />
+        </EntityType>
+        <EntityType Name="Faculties">
+          <Key>
+            <PropertyRef Name="FacultyId" />
+          </Key>
+          <Property Name="FacultyId" Type="Int32" Nullable="false" />
+          <Property Name="FacultyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_Groups_Faculties" FromRole="Faculties" ToRole="Groups" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Group_number" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="FacultyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Faculties" Relationship="Self.FK_Groups_Faculties" FromRole="Groups" ToRole="Faculties" />
+          <NavigationProperty Name="Schedules" Relationship="Self.FK_tbShedule_tbGroups" FromRole="Groups" ToRole="Schedules" />
+        </EntityType>
+        <EntityType Name="Lecturers">
+          <Key>
+            <PropertyRef Name="LecturerId" />
+          </Key>
+          <Property Name="LecturerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LecturerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Schedules" Relationship="Self.FK_tbShedule_tbLecturers" FromRole="Lecturers" ToRole="Schedules" />
+        </EntityType>
+        <EntityType Name="Schedules">
+          <Key>
+            <PropertyRef Name="SсheduleId" />
+          </Key>
+          <Property Name="SсheduleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <Property Name="DayOfWeekId" Type="Int32" />
+          <Property Name="TimeId" Type="Int32" />
+          <Property Name="TypeOfWeekId" Type="Int32" />
+          <Property Name="AuditoriaId" Type="Int32" />
+          <Property Name="DisciplineId" Type="Int32" />
+          <Property Name="LecturerId" Type="Int32" />
+          <NavigationProperty Name="Auditorias" Relationship="Self.FK_tbShedule_tbAuditorias" FromRole="Schedules" ToRole="Auditorias" />
+          <NavigationProperty Name="DaysOfWeek" Relationship="Self.FK_tbShedule_tbDaysOfWeek" FromRole="Schedules" ToRole="DaysOfWeek" />
+          <NavigationProperty Name="Disciplines" Relationship="Self.FK_tbShedule_tbDisciplines" FromRole="Schedules" ToRole="Disciplines" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_tbShedule_tbGroups" FromRole="Schedules" ToRole="Groups" />
+          <NavigationProperty Name="Lecturers" Relationship="Self.FK_tbShedule_tbLecturers" FromRole="Schedules" ToRole="Lecturers" />
+          <NavigationProperty Name="Times" Relationship="Self.FK_Schedules_Times" FromRole="Schedules" ToRole="Times" />
+          <NavigationProperty Name="TypesOfWeek" Relationship="Self.FK_tbShedule_tbTypeOfWeek" FromRole="Schedules" ToRole="TypesOfWeek" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Times">
+          <Key>
+            <PropertyRef Name="TimeId" />
+          </Key>
+          <Property Name="TimeId" Type="Int32" Nullable="false" />
+          <Property Name="TimePeriod" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Schedules" Relationship="Self.FK_Schedules_Times" FromRole="Times" ToRole="Schedules" />
+        </EntityType>
+        <EntityType Name="TypesOfWeek">
+          <Key>
+            <PropertyRef Name="TypeOfWeekId" />
+          </Key>
+          <Property Name="TypeOfWeekId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Schedules" Relationship="Self.FK_tbShedule_tbTypeOfWeek" FromRole="TypesOfWeek" ToRole="Schedules" />
+        </EntityType>
+        <Association Name="FK_tbShedule_tbAuditorias">
+          <End Role="Auditorias" Type="Self.Auditorias" Multiplicity="0..1" />
+          <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auditorias">
+              <PropertyRef Name="AuditoriaId" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="AuditoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbShedule_tbDaysOfWeek">
+          <End Role="DaysOfWeek" Type="Self.DaysOfWeek" Multiplicity="0..1" />
+          <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DaysOfWeek">
+              <PropertyRef Name="DayOfWeekId" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="DayOfWeekId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbShedule_tbDisciplines">
+          <End Role="Disciplines" Type="Self.Disciplines" Multiplicity="0..1" />
+          <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disciplines">
+              <PropertyRef Name="DisciplineId" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="DisciplineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groups_Faculties">
+          <End Role="Faculties" Type="Self.Faculties" Multiplicity="1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faculties">
+              <PropertyRef Name="FacultyId" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="FacultyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbShedule_tbGroups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbShedule_tbLecturers">
+          <End Role="Lecturers" Type="Self.Lecturers" Multiplicity="0..1" />
+          <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturers">
+              <PropertyRef Name="LecturerId" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="LecturerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Schedules_Times">
+          <End Role="Times" Type="Self.Times" Multiplicity="0..1" />
+          <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Times">
+              <PropertyRef Name="TimeId" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="TimeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbShedule_tbTypeOfWeek">
+          <End Role="TypesOfWeek" Type="Self.TypesOfWeek" Multiplicity="0..1" />
+          <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypesOfWeek">
+              <PropertyRef Name="TypeOfWeekId" />
+            </Principal>
+            <Dependent Role="Schedules">
+              <PropertyRef Name="TypeOfWeekId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ScheduleDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Auditorias" EntityType="Self.Auditorias" />
+          <EntitySet Name="DaysOfWeek" EntityType="Self.DaysOfWeek" />
+          <EntitySet Name="Disciplines" EntityType="Self.Disciplines" />
+          <EntitySet Name="Faculties" EntityType="Self.Faculties" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" />
+          <EntitySet Name="Lecturers" EntityType="Self.Lecturers" />
+          <EntitySet Name="Schedules" EntityType="Self.Schedules" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Times" EntityType="Self.Times" />
+          <EntitySet Name="TypesOfWeek" EntityType="Self.TypesOfWeek" />
+          <AssociationSet Name="FK_tbShedule_tbAuditorias" Association="Self.FK_tbShedule_tbAuditorias">
+            <End Role="Auditorias" EntitySet="Auditorias" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbShedule_tbDaysOfWeek" Association="Self.FK_tbShedule_tbDaysOfWeek">
+            <End Role="DaysOfWeek" EntitySet="DaysOfWeek" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbShedule_tbDisciplines" Association="Self.FK_tbShedule_tbDisciplines">
+            <End Role="Disciplines" EntitySet="Disciplines" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_Faculties" Association="Self.FK_Groups_Faculties">
+            <End Role="Faculties" EntitySet="Faculties" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbShedule_tbGroups" Association="Self.FK_tbShedule_tbGroups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbShedule_tbLecturers" Association="Self.FK_tbShedule_tbLecturers">
+            <End Role="Lecturers" EntitySet="Lecturers" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Schedules_Times" Association="Self.FK_Schedules_Times">
+            <End Role="Times" EntitySet="Times" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbShedule_tbTypeOfWeek" Association="Self.FK_tbShedule_tbTypeOfWeek">
+            <End Role="TypesOfWeek" EntitySet="TypesOfWeek" />
+            <End Role="Schedules" EntitySet="Schedules" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ScheduleDBModelContainer" CdmEntityContainer="ScheduleDBEntities">
+          <EntitySetMapping Name="Auditorias">
+            <EntityTypeMapping TypeName="ScheduleDBModel.Auditorias">
+              <MappingFragment StoreEntitySet="Auditorias">
+                <ScalarProperty Name="AuditoriaId" ColumnName="AuditoriaId" />
+                <ScalarProperty Name="AuditoriaName" ColumnName="AuditoriaName" />
+                <ScalarProperty Name="AuditoriaBuilding" ColumnName="AuditoriaBuilding" />
+                <ScalarProperty Name="IsOnMap" ColumnName="IsOnMap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DaysOfWeek">
+            <EntityTypeMapping TypeName="ScheduleDBModel.DaysOfWeek">
+              <MappingFragment StoreEntitySet="DaysOfWeek">
+                <ScalarProperty Name="DayOfWeekId" ColumnName="DayOfWeekId" />
+                <ScalarProperty Name="DayOfWeekName" ColumnName="DayOfWeekName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Disciplines">
+            <EntityTypeMapping TypeName="ScheduleDBModel.Disciplines">
+              <MappingFragment StoreEntitySet="Disciplines">
+                <ScalarProperty Name="DisciplineId" ColumnName="DisciplineId" />
+                <ScalarProperty Name="DisciplineName" ColumnName="DisciplineName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faculties">
+            <EntityTypeMapping TypeName="ScheduleDBModel.Faculties">
+              <MappingFragment StoreEntitySet="Faculties">
+                <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
+                <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="ScheduleDBModel.Groups">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="Group_number" ColumnName="Group_number" />
+                <ScalarProperty Name="FacultyId" ColumnName="FacultyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lecturers">
+            <EntityTypeMapping TypeName="ScheduleDBModel.Lecturers">
+              <MappingFragment StoreEntitySet="Lecturers">
+                <ScalarProperty Name="LecturerId" ColumnName="LecturerId" />
+                <ScalarProperty Name="LecturerName" ColumnName="LecturerName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schedules">
+            <EntityTypeMapping TypeName="ScheduleDBModel.Schedules">
+              <MappingFragment StoreEntitySet="Schedules">
+                <ScalarProperty Name="SсheduleId" ColumnName="SсheduleId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="DayOfWeekId" ColumnName="DayOfWeekId" />
+                <ScalarProperty Name="TimeId" ColumnName="TimeId" />
+                <ScalarProperty Name="TypeOfWeekId" ColumnName="TypeOfWeekId" />
+                <ScalarProperty Name="AuditoriaId" ColumnName="AuditoriaId" />
+                <ScalarProperty Name="DisciplineId" ColumnName="DisciplineId" />
+                <ScalarProperty Name="LecturerId" ColumnName="LecturerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ScheduleDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Times">
+            <EntityTypeMapping TypeName="ScheduleDBModel.Times">
+              <MappingFragment StoreEntitySet="Times">
+                <ScalarProperty Name="TimeId" ColumnName="TimeId" />
+                <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypesOfWeek">
+            <EntityTypeMapping TypeName="ScheduleDBModel.TypesOfWeek">
+              <MappingFragment StoreEntitySet="TypesOfWeek">
+                <ScalarProperty Name="TypeOfWeekId" ColumnName="TypeOfWeekId" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

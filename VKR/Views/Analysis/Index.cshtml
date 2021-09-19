@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<!--Ввод значений для анализа-->
+
+<div class="container cardFlow" >
+    <form method="post" action="~/Analysis/Analize">
+
+        <p class="text-left">
+            <label><input type="radio" name="radioTypePatient" value="Группа"> Группа</label><br>
+            <label><input type="radio" name="radioTypePatient" value="Преподаватель"> Преподаватель </label><br>
+        </p>
+
+        <table>
+            <tr class="block-text" id="block-Группа">
+                <td id="td__analyze">
+                    1. Укажите номер группы нулевого пациента:
+                </td>
+
+                <td id="td__analyze" >
+                    @Html.DropDownList("Group", ViewBag.Groups as SelectList)
+                </td>
+            </tr>
+
+            <tr class="block-text" id="block-Преподаватель" hidden="hidden">
+                <td id="td__analyze">
+                    1. Укажите нулевого пациента (ФИО Преподавателя):
+                </td>
+                <td id="td__analyze">
+                    @Html.DropDownList("Lecturer", ViewBag.Lecturers as SelectList)
+                </td>
+            </tr>
+
+            <tr>
+                <td id="td__analyze">
+                    2. Укажите дату появления первых симптомов:
+                </td>
+                <td id="td__analyze">
+                    <input type="date" name="DateSymptom" value="2021-04-29" min="2021-01-03">
+                </td>
+            </tr>
+
+            <tr>
+                <td id="td__analyze">
+                    3. Укажите дату выхода на больничный <br /> (день с которого отсутствуете в университете на занятиях):
+                </td>
+                <td id="td__analyze">
+                    <input type="date" name="DateStopInfect" value="2021-04-29" min="2021-01-03">
+                </td>
+            </tr>
+
+            <tr>
+                <td id="td__analyze">
+                    4. Укажите, до какой даты хотите проследить динамику <br /> распространения заражения на карте
+                </td>
+                <td id="td__analyze">
+                    <input type="date" name="DateStopAnalize" value="2021-04-29" min="2021-01-03">
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Анализировать" id="submitBtn" />
+    </form>
+</div>  
+
+
+
+<!--Секция скриптов-->
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input[name="radioTypePatient"][value="Группа"]').trigger('click');
+        });
+    </script>
+
+    <script type="text/javascript">
+        $('input[name="radioTypePatient"]').click(function () {
+            var target = $('#block-' + $(this).val());
+
+            $('.block-text').not(target).hide(0);
+            target.fadeIn(500);
+        });
+    </script>
+
+    <script type="text/javascript">
+        $('input[type="submit"]').click(function () {
+            var valueDateSymptom = document.getElementsByName('DateSymptom')[0].value;
+            var valueDateStopInfect = document.getElementsByName('DateStopInfect')[0].value;
+            var valueDateStopAnalize = document.getElementsByName('DateStopAnalize')[0].value;
+            if (!valueDateSymptom || !valueDateStopInfect || !valueDateStopAnalize) {
+                alert('Для обработки запроса введите все значения.');
+                return false;
+            }
+        });
+    </script>
+
+}
+

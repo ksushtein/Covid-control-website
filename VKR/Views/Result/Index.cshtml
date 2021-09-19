@@ -1,0 +1,131 @@
+﻿
+@model List<VKR.Models.AuditoriaOnMap>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog"></div>
+</div>
+
+<div class="container body-content">
+    <h2 style="margin-bottom:40px">Результат анализа на карте</h2>
+
+    <div class="cardFlow" style="margin:0 auto; width: 70%;">
+        <table style="white-space: normal; ">
+            <tr>
+                <td style="word-wrap: break-word;">
+                    Статусы заражения: обозначения цветовой палитры
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <svg width="100%" height="30">
+                        <rect x="10" y="0" width="25" height="25"
+                              style="fill:red;stroke:rgb(255, 128, 128);stroke-width:5;opacity:0.5" />
+                        <text x="45" y="22">Сейчас заражена<br /></text>
+                    </svg>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <svg width="100%" height="30">
+                        <rect x="10" y="0" width="25" height="25"
+                              style="fill:rgb(0, 161, 219);stroke:rgb(0, 179, 134);stroke-width:5;opacity:0.5" />
+                        <text x="45" y="22">Нет в расписании</text>
+                    </svg>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <svg width="100%" height="30">
+                        <rect x="10" y="0" width="25" height="25"
+                              style="fill:rgb(0,0,255);stroke:rgb(0, 115, 153);stroke-width:5;opacity:0.5" />
+                        <text x="45" y="22">Не подвергалась заражению</text>
+                    </svg>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <svg width="100%" height="30">
+                        <rect x="10" y="0" width="25" height="25"
+                              style="fill:fuchsia;stroke:rgb(191, 128, 255);stroke-width:5;opacity:0.5" />
+                        <text x="45" y="22">Была заражена</text>
+                    </svg>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>
+        Выберите этаж для просмотра:
+    </h3>
+
+    <p class="text-center" style="margin:0 auto; width: 70%;">
+        <label><input type="button" name="buttonFloor" value="1" id="submitBtn"></label>
+        <label><input type="button" name="buttonFloor" value="2" id="submitBtn"></label>
+        <label><input type="button" name="buttonFloor" value="3" id="submitBtn"></label>
+        <label><input type="button" name="buttonFloor" value="4" id="submitBtn"></label>
+        <label><input type="button" name="buttonFloor" value="5" id="submitBtn"></label>
+    </p>
+
+    <div class="block-text" id="block_floor-1">
+        @Html.Partial("FirstFloor")
+    </div>
+    <div class="block-text" id="block_floor-2" hidden="hidden">
+        @Html.Partial("SecondFloor")
+    </div>
+    <div class="block-text" id="block_floor-3" hidden="hidden">
+        @Html.Partial("ThirdFloor")
+    </div>
+    <div class="block-text" id="block_floor-4" hidden="hidden">
+        @Html.Partial("FourthFloor")
+    </div>
+    <div class="block-text" id="block_floor-5" hidden="hidden">
+        @Html.Partial("FifthFloor")
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        //выбор радиокнопки при старте страницы
+        $(document).ready(function () {
+            $('input[name="buttonFloor"][value="1"]').trigger('click');
+        });
+    </script>
+
+    <script type="text/javascript">
+        //открытие partial view по нажатию на кнопку
+        $('input[name="buttonFloor"]').click(function () {
+            var target = $('#block_floor-' + $(this).val());
+
+            $('.block-text').not(target).hide(0);
+            target.fadeIn(500);
+        });
+    </script>
+
+    <script type="text/javascript">
+        //открытие модального окна
+        $(function () {
+            $.ajaxSetup({ cache: false });
+            $(".audItem").click(function (e) {
+                console.log(this.href);
+                console.log(this.href.baseVal);
+                e.preventDefault();
+
+                if (this.href.baseVal === undefined)
+                    $.get(this.href, function (data) {
+                        $('#dialogContent').html(data);
+                        $('#modDialog').modal('show');
+                    });
+                else
+                    $.get(this.href.baseVal, function (data) {
+                        $('#dialogContent').html(data);
+                        $('#modDialog').modal('show');
+                    });
+            });
+        })
+    </script>
+}
+

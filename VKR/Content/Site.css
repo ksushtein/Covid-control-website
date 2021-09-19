@@ -1,0 +1,261 @@
+﻿body {
+    font-family: "Montserrat", sans-serif;
+    font-size:17px;
+    line-height: 1.65;
+    opacity: 1;
+
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.sectionIndex {
+    font-size: 20px;
+    margin-top:50px;
+}
+
+/*-------------------------------- _Layout (шаблон страницы)---------------------------*/
+header {
+    margin: 0px auto 40px auto;
+    max-width: 85%;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -ms-align-items: center;
+    align-items: center;
+    padding-bottom: 0px;
+    border-bottom: 1px solid rgba(52,79,121,.56);
+    justify-content: space-between;
+}
+header .logo {
+        max-width: 500px;
+        display: block;
+        margin: 0px 45px 0 0;
+    }
+header .mnu_top{
+    list-style-type: none;
+    margin-left:11px;
+}
+header .mnu_top li {
+    display: inline-block;
+    margin-left:5px;
+    margin-bottom:5px;
+}
+header .mnu_top li a {
+        display: block; /*чтоб ссылка была блочная*/
+        text-decoration: none;
+        color: #4f4c67;
+        font-size: 20px;
+        font-weight: 600;
+        -webkit-transition: color .4s ease;
+        -o-transition: color .4s ease;
+        transition: color .4s ease;
+        border-radius:24px;
+        border: 1px solid #a2d5ce;
+        padding:5px 30px;
+}
+header .mnu_top li a:hover {
+    background-color: darkorchid;
+    color: whitesmoke;
+}
+#openBtn { /*раскрытие меню Header*/
+    display: block;
+}
+
+#closeBtn { /*закрытие меню Header*/
+    display: block;
+    padding:0 15px 0 15px;
+}
+
+#navMenu { /*меню навигации*/
+    display: block;
+}
+
+
+/*---------------------------------Analyze (страница ввода анализа)----------------------------*/
+.cardFlow {/*тень карточки*/
+    border: solid #7357EB 5px;
+    width: 650px;
+    height: 20%;
+    text-align: center;
+    -webkit-box-shadow: -24px -22px 0px -5px rgba(48, 255, 192, 0.64);
+    -moz-box-shadow: -24px -22px 0px -5px rgba(48, 255, 192, 0.64);
+    box-shadow: -24px -22px 0px -5px rgba(48, 255, 192, 0.64);
+    padding: 10px;
+}
+.tr__analyze {/*строка таблицы ввода данных*/
+    padding: 50px 0px 0px 0px;
+    margin-bottom: 20px;
+}
+#td__analyze {/*ячейка таблицы ввода данных*/
+    padding: 5px 15px 5px 5px;
+    text-align: left;
+}
+#submitBtn {/*подтвердить анализ*/
+    text-decoration: none;
+    color: whitesmoke;
+    background-color: #7357EB;
+    font-size: 20px;
+    font-weight: 600;
+    -webkit-transition: color .4s ease;
+    -o-transition: color .4s ease;
+    transition: color .4s ease;
+    border-radius: 10px;
+    border: 1px solid #a2d5ce;
+    padding: 5px 30px;
+    margin: 3px;
+}
+
+/*-----------------------------------Home (стартовая песня)----------------------------*/
+.banner {
+    margin-top: -36px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+.banner #infoBanner {
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    position: absolute;
+    width: 75%;
+    top: 3vw;
+    left: 0;
+    padding: 10px;
+    font-size: 2.4vw;
+    height: 40vw;
+}
+.banner a {
+    display: block; /*чтоб ссылка была блочная*/
+    text-decoration: none;
+    color: black;
+    font-size: 2.4vw;
+    font-weight: 650;
+    -webkit-transition: color .4s ease;
+    -o-transition: color .4s ease;
+    transition: color .4s ease;
+    border-radius: 24px;
+    border: 1px solid #a2d5ce;
+    padding: 5px 15px;
+    background-color: lightcyan;
+    cursor: pointer;
+}
+
+
+/*------------------------------------Result (сраница карты)-------------------*/
+.map {
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+.map svg {/*УКАЗАЛА ТОЧНО что в MAP*/
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}   
+.part {
+    opacity: .3;
+}
+.part:hover {
+    transition: opacity .2s ease;
+    opacity: .5;
+}
+.fixeddLegend {
+    border: solid #7357EB 5px;
+    padding: 27px 5px 5px 5px;
+    text-align: center;
+    -webkit-box-shadow: -24px -22px 0px -5px rgba(48, 255, 192, 0.64);
+    -moz-box-shadow: -24px -22px 0px -5px rgba(48, 255, 192, 0.64);
+    box-shadow: -24px -22px 0px -5px rgba(48, 255, 192, 0.64);
+    position:relative;
+    display: inline-block;
+    background-color: white;
+    z-index: 100;
+}
+/*----------------------------------media only screen (Разные типы устройств)----------------------*/
+@media only screen and (min-width : 1201px) {
+    #openBtn {
+        display: none;
+    }
+    #closeBtn {
+        display: none;
+    }
+    #navMenu {
+        display: block;
+    }
+}
+
+
+@media only screen and (max-width : 1200px) {
+
+    header .mnu_top li {
+        margin: 5px 5px;
+    }
+    
+    header .mnu_top li a:first-child {
+            font-size: 15px;
+            padding: 5px 15px;
+            
+    }        
+
+    #openBtn {
+        display: block;
+    }
+
+    #closeBtn {
+        display: block;
+    }
+
+    #navMenu {
+        display: none;
+    }
+}
+
+/*desctops*/
+@media only screen and (max-width : 992px) {
+}
+
+/*tablets*/
+@media only screen and (max-width :768px) {
+    #tr__analyze {
+        padding: 20px 0px 0px 0px;
+    }
+    #td__analyze {
+        padding: 0px 15px 0px 0px;
+        text-align: left;
+    }
+    .cardFlow {
+        width: 95vw;
+        height: 20%;
+        text-align: center;
+    }
+}
+
+/*phones*/
+@media only screen and (max-width : 480px) {
+}
+
+
+/*iphone retina*/
+@media only screen and (max-width : 320px) {
+}

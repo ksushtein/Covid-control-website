@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="46e8fde95d304f68b491b6e90c9f70f7" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="ScheduleDBModel.Auditorias" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScheduleDBModel.DaysOfWeek" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScheduleDBModel.Disciplines" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScheduleDBModel.Faculties" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScheduleDBModel.Groups" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScheduleDBModel.Lecturers" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScheduleDBModel.Schedules" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScheduleDBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScheduleDBModel.Times" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ScheduleDBModel.TypesOfWeek" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
+        <AssociationConnector Association="ScheduleDBModel.FK_tbShedule_tbAuditorias" ManuallyRouted="false" />
+        <AssociationConnector Association="ScheduleDBModel.FK_tbShedule_tbDaysOfWeek" ManuallyRouted="false" />
+        <AssociationConnector Association="ScheduleDBModel.FK_tbShedule_tbDisciplines" ManuallyRouted="false" />
+        <AssociationConnector Association="ScheduleDBModel.FK_Groups_Faculties" ManuallyRouted="false" />
+        <AssociationConnector Association="ScheduleDBModel.FK_tbShedule_tbGroups" ManuallyRouted="false" />
+        <AssociationConnector Association="ScheduleDBModel.FK_tbShedule_tbLecturers" ManuallyRouted="false" />
+        <AssociationConnector Association="ScheduleDBModel.FK_Schedules_Times" ManuallyRouted="false" />
+        <AssociationConnector Association="ScheduleDBModel.FK_tbShedule_tbTypeOfWeek" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

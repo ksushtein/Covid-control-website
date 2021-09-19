@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - приложение ASP.NET</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css")
+
+
+</head>
+
+<body>
+    <header>
+        <a href=@Url.Action("Index", "Home")>
+            <img class="logo" src="~/img/covidLogo.svg" alt="Логотип" width="100%" />
+        </a>
+        <span id="openBtn" onclick="w3_open()" style="font-size:40px; display:none" >
+            &#9776;
+        </span>
+
+        <nav id="navMenu" style="display:block" >
+            <ul class="mnu_top">
+                <li>
+                    <a href="javascript:void(0)" onclick="w3_close()" style="font-size:40px" id="closeBtn">
+                    &times;
+                    </a>
+                </li>
+                <li> <a href="~/Home/Index#instruction_section">Инструкция пользователя</a> </li>
+                <li> <a href="~/Home/Index#logic_section">Логика анализа</a> </li>
+                <li> <a href="~/Home/Index#voz_section">ВОЗ</a> </li>
+            </ul>
+        </nav>
+
+
+    </header>
+
+        @RenderBody()
+        <hr />
+        <footer style="margin-left:10px">
+            <form method="post" action="~/Parse/Parsing">
+                <input type="submit" name="submitParsingSite" class="btn btn-link" value="Запустить обновление расписания" />
+            </form>
+            <p>&copy; Ситникова К.А. </p>
+            <p>version: 0.20 </p>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("input[name='submitParsingSite']").click(function () {
+            if (confirm('Действительно хотите начать парсинг сайта? Это процесс займет около 20 минут и удалит все данные о расписании, загруженные при предыдущем парсинге.')) {
+                if (confirm('Перед началом парсинга убедитесь, что ваше устройство и интернет-подключение стабильны. Дождитесь сообщения об успешном завершении операции и не закрывайте текущую вкладку(не переходите по другим ссылкам) во избежание некорректного заполнения базы данных.  Напоминаем, что необходимо выделить 20 минут для полной обработки данных. Если не готовы приступить сейчас, нажмите кнопку Отмена.'))
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+                
+        });
+    });
+</script>
+
+<script>
+    function w3_open() {
+        document.getElementById("navMenu").style.display = "block";
+        document.getElementById("openBtn").style.display = "none";
+    }
+
+    function w3_close() {
+        document.getElementById("navMenu").style.display = "none";
+        document.getElementById("openBtn").style.display = "block";
+    }
+</script>

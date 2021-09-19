@@ -1,0 +1,255 @@
+﻿@model List<VKR.Models.AuditoriaOnMap>
+<h3 class="text-center">Этаж 5</h3>
+
+<div class="map">
+    <svg viewBox="0 0 2000 5332">
+        <defs>
+            <!--Голубой-->
+            <radialGradient id="NotInSchedule-5" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                <stop offset="0%" style="stop-color: rgb(0, 179, 134); stop-opacity: 0" />
+                <stop offset="100%" style="stop-color: rgb(0, 161, 219); stop-opacity: 1" />
+            </radialGradient>
+
+            <!--Зеленый бирюзовый-->
+            <radialGradient id="NotInfected-5" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                <stop offset="0%" style="stop-color: rgb(0, 115, 153); stop-opacity: 0" />
+                <stop offset="100%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
+            </radialGradient>
+
+            <!--Красный-->
+            <radialGradient id="IsInfected-5" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                <stop offset="0%" style="stop-color: rgb(255, 128, 128); stop-opacity: 0" />
+                <stop offset="100%" style="stop-color: rgb(204, 0, 0); stop-opacity: 1" />
+            </radialGradient>
+
+            <!--Фиолетовый-->
+            <radialGradient id="WasInfected-5" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                <stop offset="0%" style="stop-color: rgb(191, 128, 255); stop-opacity: 0" />
+                <stop offset="100%" style="stop-color: rgb(159, 128, 255); stop-opacity: 1" />
+            </radialGradient>
+        </defs>
+
+
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 501" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 501").Status.ToString()-5)"
+                  d="M 518.29891,100.42041 H 725.61847 V 217.03767 H 518.29891 Z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 502" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 502").Status.ToString()-5)"
+                  d="M 518.29891,441.3826 H 725.61847 V 217.03767 H 518.29891 Z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 503" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 503").Status.ToString()-5)"
+                  d="m 518.21484,442.68553 h 207.4877 V 615.7967 h -207.4877 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 504" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 504").Status.ToString()-5)"
+                  d="m 465.70862,1010.7512 -1.9516,256.8771 254.28171,2.1163 0.37586,-257.2852 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 505" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 505").Status.ToString()-5)"
+                  d="m 461.70862,1361.9888 2.0484,-91.4904 254.28171,-0.7538 -1.62414,91.6358 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 506" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 506").Status.ToString()-5)"
+                  d="m 460.25214,1642.2452 0.0396,138.5307 253.20351,1.1414 0.38276,-138.7509 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 507" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 507").Status.ToString()-5)"
+                  d="m 458.51472,1941.0356 0.0399,-157.818 254.93804,-1.3003 0.38538,158.0688 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 508" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 508").Status.ToString()-5)"
+                  d="m 458.4809,1942.2662 -1.9601,141.3292 257.00557,1.1645 0.38548,-141.5538 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 509" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 509").Status.ToString()-5)"
+                  d="m 456.4809,2178.0817 0.0399,-94.5591 257.00557,1.2373 0.38548,92.7063 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 510" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 510").Status.ToString()-5)"
+                  d="m 456.46162,2179.0293 0.0395,87.9351 254.7573,-1.1507 0.3821,-86.212 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 511" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 511").Status.ToString()-5)"
+                  d="M 455.24493,2800.1635 H 706.3423 V 2534.666 H 455.24493 Z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 512" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 512").Status.ToString()-5)"
+                  d="m 455.16594,2801.745 h 251.25535 v 217.2447 H 455.16594 Z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 513" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 513").Status.ToString()-5)"
+                  d="m 450.40485,3277.8714 0.0383,-253.3603 252.86676,1.0752 0.3704,250.6752 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 514" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 514").Status.ToString()-5)"
+                  d="m 450.76205,3277.7543 -3.9617,545.7247 254.15352,-0.3162 2.36935,-545.9401 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 515б" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 515б").Status.ToString()-5)"
+                  d="M 698.08384,3825.6938 H 447.84265 v 133.6239 l 83.41373,69.6465 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 515" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 515").Status.ToString()-5)"
+                  d="m 531.25638,4029.774 169.25699,-204.89 103.27946,84.6531 -170.87667,207.6998 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 515А" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 515А").Status.ToString()-5)"
+                  d="m 634.91616,4114.8074 169.25699,-204.89 179.40461,147.8208 -171.68651,207.6998 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 516" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 516").Status.ToString()-5)"
+                  d="M 882.25343,4323.5501 1053.0319,4114.9464 983.57776,4057.7382 811.89125,4265.438 Z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 517" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 517").Status.ToString()-5)"
+                  d="m 882.25343,4323.5501 170.77847,-208.6037 59.3107,49.6909 -171.68647,208.5097 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 518" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 518").Status.ToString()-5)"
+                  d="m 944.13344,4373.6022 166.61796,-204.4914 92.8892,78.5538 -166.5153,203.6367 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 519" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 519").Status.ToString()-5)"
+                  d="m 1247.0144,4627.8926 169.8573,-204.1111 -213.2311,-176.1169 -166.5153,203.6367 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 520" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 520").Status.ToString()-5)"
+                  d="m 1350.3421,4713.894 172.3982,-208.6037 -102.2774,-85.5527 -172.0668,210.1293 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 520а" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 520а").Status.ToString()-5)"
+                  d="m 1350.3421,4713.894 94.6533,-115.4719 228.1383,190.6035 -95.1319,116.1876 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 520б" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 520б").Status.ToString()-5)"
+                  d="m 1376.9244,5139.2008 164.6354,-201.8573 -302.6428,-251.9637 -88.1873,107.9435 80.7429,66.9994 -77.9187,94.6788 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 521" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 521").Status.ToString()-5)"
+                  d="m 995.48883,4825.7919 167.87467,-204.2868 75.5535,63.8747 -88.1873,107.9435 80.7429,66.9994 -77.9187,94.6788 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 522" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 522").Status.ToString()-5)"
+                  d="m 1162.1233,4622.5784 -167.63727,202.4605 -48.59052,-39.6823 167.63729,-203.2703 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 523" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 523").Status.ToString()-5)"
+                  d="m 1065.7521,4542.404 -166.82743,203.2704 46.97084,39.6822 167.63729,-203.2703 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 524" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 524").Status.ToString()-5)"
+                  d="m 1065.7521,4542.404 -166.82743,203.2704 -36.44289,-27.5347 168.44712,-204.0801 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 525" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 525").Status.ToString()-5)"
+                  d="m 990.43679,4479.2364 -168.44712,204.0801 40.49211,34.8232 168.44712,-204.0801 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 526" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 526").Status.ToString()-5)"
+                  d="m 990.43679,4479.2364 -168.44712,204.0801 -42.11178,-35.633 166.01761,-205.6999 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 527" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 527").Status.ToString()-5)"
+                  d="m 897.30495,4402.3014 -168.44711,204.89 51.02005,40.4921 166.01761,-205.6999 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 528" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 528").Status.ToString()-5)"
+                  d="m 897.30495,4402.3014 -168.44711,204.89 -53.44957,-43.7315 169.25697,-207.3195 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 529" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 529").Status.ToString()-5)"
+                  d="M 502.18004,4073.6033 331.44235,4279.6385 228.74533,4196.9672 400.0023,3987.6477 Z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 530" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 530").Status.ToString()-5)"
+                  d="M 392.54375,3791.1992 H 130.56301 v 323.8263 l 99.6402,82.4609 170.64815,-208.4427 -9.74348,-11.4529 z" />
+        </a>
+        <!--501 убрать с карты-->
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 530а" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 530а").Status.ToString()-5)"
+                  d="m 133.25092,3269.5575 -1.81902,521.1344 259.56675,-0.3019 3.63458,-521.1374 z" />
+        </a>
+
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 531" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 531").Status.ToString()-5)"
+                  d="m 133.25092,3269.1053 -1.81902,-251.8322 263.56675,0.1459 -0.36542,251.8336 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 532" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 532").Status.ToString()-5)"
+                  d="m 133.25092,2890.598 -1.81902,126.6751 263.56675,-0.073 1.63458,-126.6758 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 533" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 533").Status.ToString()-5)"
+                  d="m 133.25092,2890.4535 0.18098,-123.6754 263.56675,2.07 -0.36542,121.6761 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 534а" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 534а").Status.ToString()-5)"
+                  d="m 133.25092,2529.3846 0.18098,237.3935 265.56675,0.027 1.63458,-237.5559 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 534" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 534").Status.ToString()-5)"
+                  d="m 133.25092,2529.0934 0.18098,-273.1638 267.56675,1.969 -0.36542,271.3506 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У (535)511" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У (535)511").Status.ToString()-5)"
+                  d="m 133.25092,1791.5844 0.18098,464.3452 267.56675,0.6529 3.63458,-465.2629 z" />
+        </a>
+        <!--дублирование (536 - объединены?)-->
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 536" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 536").Status.ToString()-5)"
+                  d="m 133.25092,1791.2337 0.18098,-150.5808 271.21104,-0.2117 -0.01,150.8784 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 536 (1)" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 536 (1)").Status.ToString()-5)"
+                  d="m 133.25092,1436.7036 0.18098,203.4516 271.21104,0.286 1.99,-203.8536 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 537" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 537").Status.ToString()-5)"
+                  d="m 133.25092,1436.5424 0.18098,-79.274 273.21104,-0.1115 -0.01,79.4307 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 538" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 538").Status.ToString()-5)"
+                  d="m 137.25284,1237.3355 0.17909,119.652 270.3552,0.1683 -0.01,-119.8886 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 539" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 539").Status.ToString()-5)"
+                  d="m 137.25284,1237.2299 0.17909,-65.4205 270.3552,-0.092 -0.01,65.5498 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 540" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 540").Status.ToString()-5)"
+                  d="m 137.25284,1104.3953 0.17909,67.2276 270.3552,0.094 -0.01,-67.3604 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 541" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 541").Status.ToString()-5)"
+                  d="m 137.25376,1104.307 0.17985,-84.139 271.49789,-0.1176 -0.01,84.3052 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 542" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 542").Status.ToString()-5)"
+                  d="m 137.25376,926.3395 0.17985,93.5801 271.49789,0.1308 -0.01,-93.76495 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 543" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 543").Status.ToString()-5)"
+                  d="m 137.25376,926.1907 0.17985,-164.04865 271.49789,-0.2293 -0.01,164.3727 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 544" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 544").Status.ToString()-5)"
+                  d="m 137.25376,515.02692 0.17985,246.54123 273.49789,0.3446 1.99,-245.02822 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 545" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 545").Status.ToString()-5)"
+                  d="m 136.99422,513.77236 0.18019,-106.07514 276.01287,-0.14826 -0.006,105.42415 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 546" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 546").Status.ToString()-5)"
+                  d="m 136.99422,307.05981 0.18019,100.34889 276.01287,0.14026 -0.006,-99.73304 z" />
+        </a>
+        <a class="audItem" href="@Url.Action("Details", "Result", new { nameAud = "У 547" })">
+            <path class="part" fill="url(#@Model.First(x => x.Name == "У 547").Status.ToString()-5)"
+                  d="m 136.99438,306.09594 0.18168,-99.58966 278.30164,-0.13921 -0.006,98.97848 z" />
+        </a>
+    </svg>
+
+    <img src="~/img/5floor.jpg" alt="" width="100%">
+</div>

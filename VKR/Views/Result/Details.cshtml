@@ -1,0 +1,71 @@
+﻿@using VKR.Models
+@model VKR.Models.AuditoriaOnMap
+
+@{
+
+    string status = "";
+    switch (Model.Status)
+    {
+        case AuditoriaOnMap.status.IsInfected:
+            status = "Аудитория заражена. Требуется дезинфекция!";
+            break;
+        case AuditoriaOnMap.status.NotInfected:
+            status = "Аудитория не подвергалась заражению";
+            break;
+        case AuditoriaOnMap.status.WasInfected:
+            status = "Аудитория подвергалась заражению. Период активности инфекции пройден (4 дня)";
+            break;
+        case AuditoriaOnMap.status.NotInSchedule:
+            status = "Аудитории нет в расписании занятий";
+            break;
+        default:
+            status = "Нет данных о статусе заражения";
+            break;
+    }
+}
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal" area-hidden="true">X</button>
+        <h4>Результат анализа заражения для аудитории</h4>
+    </div>
+    <div class="modal-body">
+        <dl class="dl-horizontal">
+            <dt>Название аудитории:</dt>
+            <dd>@Html.DisplayFor(model => model.Name)</dd>
+
+            <dt>Статус анализа:</dt>
+            <dd>@status</dd>
+
+            @{
+                if (Model.Status == AuditoriaOnMap.status.IsInfected || Model.Status == AuditoriaOnMap.status.WasInfected)
+                {
+                    <dt>Нулевой пациент данной аудитории:</dt>
+                    <dd>
+                        @foreach (var z in Model.InfectedAuditoria.ZeroPatientsData)
+                        {
+                            @z
+                        }
+                    </dd>
+
+                    <dt>Список групп:</dt>
+                    <dd>
+                        @foreach (var g in Model.InfectedAuditoria.InfectGroups)
+                        {
+                            @g.Group_number.Insert(0, "◦ ")
+                        }
+                    </dd>
+
+                    <dt>Список преподавателей:</dt>
+                    <dd>
+                        @foreach (var l in Model.InfectedAuditoria.InfectLecturers)
+                        {
+                            @l.LecturerName.Insert(0 , " ◦ ")
+                        }
+                    </dd>
+                }
+            }
+
+        </dl>
+    </div>
+</div>
